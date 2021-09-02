@@ -10,7 +10,7 @@
   </v-row>
   <v-row>
     <v-col class="text-center">
-     <v-btn rounded to="/inspire">診断スタート</v-btn>
+     <v-btn rounded to="/inspire">診断スタート</v-btn>a
     </v-col>
   </v-row>
 </v-container>
