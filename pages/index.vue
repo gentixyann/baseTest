@@ -9,7 +9,7 @@
           v-if="!start"
         >
         <div :is="components" v-if="start"></div>
-        {{answer}}
+        {{ answer }}
       </div>
     </v-col>
   </v-row>
@@ -43,7 +43,7 @@ export default {
     return {
       start: false,
       pageNum: 0,
-      answer: [],
+      answers: [],
       componentTypes: [
         'question1',
         'question2',
@@ -58,24 +58,21 @@ export default {
       return this.componentTypes[this.pageNum];
     }
   },
+  // 初期化で大体使うやつ
   created() {
-  this.answer = new Array(this.componentTypes.length)
+  this.answers = new Array(this.componentTypes.length)
     .fill(0)
   },
   methods: {
     next(answer) {
-      this.answer[this.pageNum] += answer;
+      this.answers[this.pageNum] += answer;
       const lastPage = this.pageNum == this.componentTypes.length-1;
+      // lastPageならresult()、そうでないならpageNumに+1
       lastPage ? this.result() : this.pageNum += 1;
-      // if (this.pageNum == this.componentTypes.length-1) {
-      //   this.result()
-      // } else {
-      //   this.pageNum += 1;
-      // }
     },
     result() {
-      const points = this.answer.reduce((a, b) => a + b, 0);
-      this.$router.push({ name: 'results-id', params: { id: points } })
+      const points = this.answers.reduce((a, b) => a + b, 0);
+      this.$router.push({ name: 'results-last', params: { id: points } })
     }
   }
 }
