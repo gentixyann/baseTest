@@ -6,10 +6,12 @@
       </v-container>
     </v-main>
     <v-footer
-      :absolute="!fixed"
-      app
+      class="text-center"
+      absolute
     >
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+    <div class="footer">
+       &copy; {{ new Date().getFullYear() }}
+    </div>
     </v-footer>
   </v-app>
 </template>
