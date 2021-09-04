@@ -5,7 +5,7 @@
       <div class="page-container">
         <img
           src="/img/start.JPG"
-          class="mb-5 topImg"
+          class="mb-5 contentImg"
           v-if="!start"
         >
         <div :is="components" v-if="start"></div>
@@ -71,18 +71,15 @@ export default {
       lastPage ? this.result() : this.pageNum += 1;
     },
     result() {
+      // reduceでanswers配列内の数値を全て足す
       const points = this.answers.reduce((a, b) => a + b, 0);
-      this.$router.push({ name: 'results-last', params: { id: points } })
+      this.$router.push({ name: 'result-last', params: { id: points } })
     }
   }
 }
 </script>
 
-<style lang="scss" scoped>
-.page-container {
-  max-width: 500px;
-  width: 100%;
-  margin: auto;
-}
+<style scoped>
+
 </style>
 
