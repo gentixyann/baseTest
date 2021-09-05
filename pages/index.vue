@@ -9,7 +9,7 @@
           v-if="!start"
         >
         <div :is="components" v-if="start"></div>
-        {{ answer }}
+        {{ answers }}
       </div>
     </v-col>
   </v-row>
