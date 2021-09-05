@@ -8,6 +8,7 @@
     <v-footer
       class="text-center"
       absolute
+      color="primary lighten-3"
     >
     <div class="footer">
        &copy; {{ new Date().getFullYear() }}

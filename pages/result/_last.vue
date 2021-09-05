@@ -7,15 +7,15 @@
     </v-col>
   </v-row>
     <div v-if="resultsNum == 0">
-      <p>ズバリ0ですね！</p>
+      <p>ズバリあなたはリザードン</p>
       <Result1 />
     </div>
     <div v-else-if="resultsNum>=1 && resultsNum<=3">
-      <p>ズバリ１〜３ですね！</p>
+      <p>ズバリあなたカメックス</p>
        <Result2 />
     </div>
     <div v-else-if="resultsNum>=4 && resultsNum<=5">
-      <p>ズバリ4〜5ですね！</p>
+      <p>ズバリあなたはフシギバナ</p>
       <Result3 />
     </div>
   <v-row>
