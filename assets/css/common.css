@@ -1,13 +1,54 @@
-.page-container {
-  max-width: 500px;
-  width: 100%;
-  margin: auto;
+body,
+html,
+#__nuxt,
+#__layout {
+    padding: 0;
+    margin: 0;
+    height: 100%;
 }
 
-.footer {
-  margin: auto;
+.wrapper {
+    width: 100%;
+    position: relative;
+    min-height: 100%;
+}
+
+.page-container {
+    max-width: 500px;
+    width: 100%;
+    margin: auto;
+}
+
+footer {
+    width: 100%;
+    margin: auto;
+    background-color: #fce4ec;
+    bottom: 0;
+    position: absolute;
 }
 
 .contentImg {
-  width: 100%;
+    width: 70%;
+}
+
+ul {
+    list-style: none;
+    padding: 20px 20px 0 20px;
+    margin: 0;
+}
+
+li {
+    margin-bottom: 20px;
+}
+
+.nuxt-link-active {
+    color: #d27ab3 !important;
+}
+
+.primary {
+    color: #fce4ec;
+}
+
+.accent {
+    color: #fff176;
 }

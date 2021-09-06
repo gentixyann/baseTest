@@ -2,22 +2,10 @@
 <div class="container">
   <div class="row">
     <div class="text-center col">
-       {{ $route.params.id }}点！
-        <p>「Yes」で+1「No」で+0</p>
+       {{ $route.params.array }}点！
     </div>
   </div>
-    <div v-if="resultsNum == 0">
-      <p>ズバリあなたはリザードン</p>
-      <Result1 />
-    </div>
-    <div v-else-if="resultsNum>=1 && resultsNum<=3">
-      <p>ズバリあなたカメックス</p>
-       <Result2 />
-    </div>
-    <div v-else-if="resultsNum>=4 && resultsNum<=5">
-      <p>ズバリあなたはフシギバナ</p>
-      <Result3 />
-    </div>
+
   <div class="row">
     <div class="text-center col">
       <nuxt-link to="/">Topへ戻る</nuxt-link>
@@ -40,7 +28,7 @@ components: {
 },
   data() {
     return {
-      resultsNum: Number(this.$route.params.id),
+      resultsNum: this.$route.params.id,
     }
   },
   computed: {
