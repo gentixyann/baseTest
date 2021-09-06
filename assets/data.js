@@ -39,45 +39,54 @@ export const answersData = [
 
 export const resultsData = [
     {
-        id: 1,
-        title: "診断結果！",
+        id: 0,
         results: [
             {
-                id: 1,
+                id: 0,
                 resultText: "熱中する人",
             },
             {
-                id: 2,
+                id: 1,
                 resultText: "達成する人",
             },
             {
-                id: 3,
+                id: 2,
                 resultText: "挑戦する人",
             },
+        ]
+    },
+    {
+        id: 1,
+        results: [
             {
-                id: 4,
+                id: 0,
                 resultText: "助ける",
             },
             {
-                id: 5,
+                id: 1,
                 resultText: "改革する人",
             },
             {
-                id: 6,
+                id: 2,
                 resultText: "信じられるものを求める人",
             },
+        ]
+    },
+    {
+        id: 2,
+        results: [
             {
-                id: 7,
+                id: 0,
                 resultText: "平和な人",
             },
              {
-                id: 8,
+                id: 1,
                 resultText: "観察する人",
             },
              {
-                id: 9,
+                id: 2,
                 resultText: "個性を求める人",
             }
         ]
-    }
+    },
 ];
