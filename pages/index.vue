@@ -16,7 +16,8 @@
                 <li>疲れている時など、通常の状態でない時に回答するのは、お勧めしません。</li>
             </ul>
         </div>
-        <div :is="components" v-if="start"></div>
+        <!-- <div :is="components" v-if="start"></div> -->
+        <question :question="questions[pageNum]" v-if="start"></question>
         <!-- {{ answers }} -->
       </div>
     </div>
@@ -30,24 +31,27 @@
     <button class="col-sm-4 btnA" @click="next(0)" type="button">A</button>
     <button class="col-sm-4 btnB" @click="next(1)" type="button">B</button>
     <button class="col-sm-4 btnC" @click="next(2)" type="button">C</button>
+    <button @click="back">back</button>
   </div>
 </div>
 </template>
 
 <script>
+import {questions} from '~/assets/js/data.js'
 const Question1 = () => import('../components/questions/Question1.vue');
 const Question2 = () => import('../components/questions/Question2.vue');
-
+const Question = () => import('../components/questions/Question.vue');
 export default {
   components: {
     Question1,
     Question2,
+    Question
   },
   data() {
     return {
       start: false,
       pageNum: 0,
-      answers: [],
+      answers: '',
       componentTypes: [
         'question1',
         'question2',
@@ -55,27 +59,24 @@ export default {
     }
   },
   computed: {
-    components() {
-      return this.componentTypes[this.pageNum];
+    questions() {
+      return questions;
     }
-  },
-  // 初期化で大体使うやつ
-  created() {
-  this.answers = new Array(this.componentTypes.length)
-    .fill(0)
   },
   methods: {
     next(answer) {
-      this.answers[this.pageNum] += answer;
+      this.answers = this.answers + String(answer);
       const lastPage = this.pageNum == this.componentTypes.length-1;
       // lastPageならresult()、そうでないならpageNumに+1
       lastPage ? this.result() : this.pageNum += 1;
     },
+    back() {
+      this.answers = this.answers.slice(0, -1);
+      if (this.pageNum == 0) this.start = false;
+      else this.pageNum -= 1;
+    },
     result() {
-      // reduceでanswers配列内の数値を全て足す
-      const points = this.answers.reduce((a, b) => a + b, 0);
-    //   this.$router.push({ name: 'result-last', params: { id: points } });
-      this.$router.push({ name: 'result-final', params: { array: this.answers } })
+      this.$router.push({ name: 'result-final', params: { answerKey: this.answers } })
     }
   }
 }
