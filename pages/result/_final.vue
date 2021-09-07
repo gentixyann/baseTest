@@ -27,17 +27,26 @@ export default Vue.extend({
   },
   computed: {
     result() {
+      //index.vueから送られてきたanswerKeyを元に結果を検索しresultにバインディング
       return results.find((result: {id: string}) => result.id == (this as any).answerKey)
     }
   },
+  //angularにもある？ある値の変化を検知
   watch: {
+    //vue-router.ページがリロードされたり、queryなどが変わったら検知
     '$route': {
       handler(from, to) {
+        //$routeのparamsにanswerKeyが入ってた場合
         if('answerKey' in from.params) {
+          //dataのanswerKeyに格納
           this.answerKey = this.$route.params.answerKey;
+          //sessionstorageにも格納(リロードされた場合this.$route.params.answerKeyが消失しエラーになるため)
           sessionStorage.setItem('localhost:3000', this.answerKey);
         } else {
-          this.answerKey = sessionStorage.getItem('localhost:3000')
+          //sessionStorageを読み込む
+          this.answerKey = sessionStorage.getItem('localhost:3000');
+          //故意に消された場合topに戻す
+          if(!this.answerKey) this.$router.push('/');
         }
       },
       immediate: true

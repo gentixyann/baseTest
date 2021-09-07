@@ -16,9 +16,8 @@
                 <li>疲れている時など、通常の状態でない時に回答するのは、お勧めしません。</li>
             </ul>
         </div>
-        <!-- <div :is="components" v-if="start"></div> -->
+        <!--pageNumで問題を分割-->
         <question :question="questions[pageNum]" v-if="start"></question>
-        <!-- {{ answers }} -->
       </div>
     </div>
   </div>
@@ -31,20 +30,16 @@
     <button class="col-sm-4 btnA" @click="next(0)" type="button">A</button>
     <button class="col-sm-4 btnB" @click="next(1)" type="button">B</button>
     <button class="col-sm-4 btnC" @click="next(2)" type="button">C</button>
-    <button @click="back">back</button>
+    <button @click="back">back</button><!--戻るボタン(ノリで作成)-->
   </div>
 </div>
 </template>
 
 <script>
 import {questions} from '~/assets/js/data.js'
-const Question1 = () => import('../components/questions/Question1.vue');
-const Question2 = () => import('../components/questions/Question2.vue');
 const Question = () => import('../components/questions/Question.vue');
 export default {
   components: {
-    Question1,
-    Question2,
     Question
   },
   data() {
@@ -52,30 +47,33 @@ export default {
       start: false,
       pageNum: 0,
       answers: '',
-      componentTypes: [
-        'question1',
-        'question2',
-      ]
     }
   },
   computed: {
+    //data.jsからimportした問題のデータをquestionコンポーネントに流し込む
     questions() {
       return questions;
     }
   },
   methods: {
     next(answer) {
-      this.answers = this.answers + String(answer);
-      const lastPage = this.pageNum == this.componentTypes.length-1;
+      //回答するたびに文字列が足されていく "0"->"02"
+      this.answers +=  String(answer);
+      // lastpageかどうか判定
+      const lastPage = this.pageNum == this.questions.length-1;
       // lastPageならresult()、そうでないならpageNumに+1
       lastPage ? this.result() : this.pageNum += 1;
     },
     back() {
+      //前回の回答をなしにする(最後の文字列削除)
       this.answers = this.answers.slice(0, -1);
+      //最初の診断スタートページに戻る
       if (this.pageNum == 0) this.start = false;
+      //ひとつ前の質問に戻る
       else this.pageNum -= 1;
     },
     result() {
+      //回答のkeyを結果ページに送る 例->"02"
       this.$router.push({ name: 'result-final', params: { answerKey: this.answers } })
     }
   }
