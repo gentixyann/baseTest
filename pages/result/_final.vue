@@ -15,9 +15,9 @@
 </template>
 
 <script lang="ts">
-import {results} from '~/assets/js/data.js'
+import { resultsData } from '~/assets/js/data.js'
 import Vue from 'vue'
-interface DataType {answerKey: string | null}
+interface DataType { answerKey: string | null }
 
 export default Vue.extend({
   data(): DataType {
@@ -28,7 +28,7 @@ export default Vue.extend({
   computed: {
     result() {
       //index.vueから送られてきたanswerKeyを元に結果を検索しresultにバインディング
-      return results.find((result: {id: string}) => result.id == (this as any).answerKey)
+      return resultsData.find((result: {id: string}) => result.id == (this as any).answerKey);
     }
   },
   //angularにもある？ある値の変化を検知
@@ -41,14 +41,16 @@ export default Vue.extend({
           //dataのanswerKeyに格納
           this.answerKey = this.$route.params.answerKey;
           //sessionstorageにも格納(リロードされた場合this.$route.params.answerKeyが消失しエラーになるため)
+          // 本番では本番のURLにする
           sessionStorage.setItem('localhost:3000', this.answerKey);
         } else {
-          //sessionStorageを読み込む
+          // result画面でリロードした時sessionStorageを読み込む
           this.answerKey = sessionStorage.getItem('localhost:3000');
           //故意に消された場合topに戻す
           if(!this.answerKey) this.$router.push('/');
         }
       },
+      // result画面に来てすぐwatchの$routeを検知
       immediate: true
     }
   }

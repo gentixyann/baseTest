@@ -3,10 +3,10 @@
         <!--質問表示-->
         <h2>{{question.title}}</h2>
         <div>
-            <!--選択肢をfor文で回す-->
+            <!--選択肢answersをfor文で回す-->
           <p v-for="(answer, i) in question.answers" :key="i">
               <!--回答の選択肢を表示-->
-              {{initial[i]}}. {{answer.text}}
+              {{ initial[i] }}. {{ answer.text }}
           </p>
         </div>
     </div>
@@ -15,7 +15,8 @@
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
-    //propsで問題を受け取る
+    // index.vueから受け取ったquestionをpropsで受け取る
+    // questionはdata.jsの問題１つ分
     props: ['question'],
     computed: {
         //選択肢の数だけinitialにA,B,Cと自動でつく

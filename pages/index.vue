@@ -16,8 +16,8 @@
                 <li>疲れている時など、通常の状態でない時に回答するのは、お勧めしません。</li>
             </ul>
         </div>
-        <!--pageNumで問題を分割-->
-        <question :question="questions[pageNum]" v-if="start"></question>
+        <!-- pageNumで問題を分割しquestionとしてQuestion.vueに渡す -->
+        <Question :question="questions[pageNum]" v-if="start"></Question>
       </div>
     </div>
   </div>
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import {questions} from '~/assets/js/data.js'
+import { questionsData } from '~/assets/js/data.js'
 const Question = () => import('../components/questions/Question.vue');
 export default {
   components: {
@@ -52,7 +52,7 @@ export default {
   computed: {
     //data.jsからimportした問題のデータをquestionコンポーネントに流し込む
     questions() {
-      return questions;
+      return questionsData;
     }
   },
   methods: {

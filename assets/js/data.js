@@ -1,4 +1,4 @@
-export const questions = [
+export const questionsData = [
     {
         id: 0,
         title: "質問１",
@@ -37,7 +37,7 @@ export const questions = [
     }
 ];
 
-export const results = [
+export const resultsData = [
     {
         id: "00",
         text: "熱中する人",
