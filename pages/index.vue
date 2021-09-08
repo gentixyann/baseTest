@@ -1,68 +1,80 @@
 <template>
-<div class="container">
-   <div class="row mb-4">
-    <div class="text-center col">
-      <div class="page-container">
-        <img
-          src="@/assets/images/start.JPG"
-          class="mb-4 contentImg"
-          v-if="!start"
-        >
-        <div class="intro" v-if="!start">
+  <div class="container">
+    <div class="row mb-4">
+      <div class="text-center col">
+        <div class="page-container">
+          <img
+            src="@/assets/images/start.JPG"
+            class="mb-4 contentImg"
+            v-if="!start"
+          />
+          <div class="intro" v-if="!start">
             <h4>回答に当たっての注意点</h4>
             <ul>
-                <li>すべての内容に合意できなくても、ほかの2つの文章よりも自分に当てはまるものを直感的に選択して下さい。</li>
-                <li>こうありたい自分ではなく、これまでの人生の大半において実際にそうだったという傾向をお答え下さい。</li>
-                <li>疲れている時など、通常の状態でない時に回答するのは、お勧めしません。</li>
+              <li>
+                すべての内容に合意できなくても、ほかの2つの文章よりも自分に当てはまるものを直感的に選択して下さい。
+              </li>
+              <li>
+                こうありたい自分ではなく、これまでの人生の大半において実際にそうだったという傾向をお答え下さい。
+              </li>
+              <li>
+                疲れている時など、通常の状態でない時に回答するのは、お勧めしません。
+              </li>
             </ul>
+          </div>
+          <!-- pageNumで問題を分割しquestionとしてQuestion.vueに渡す -->
+          <Question :question="questions[pageNum]" v-if="start"></Question>
         </div>
-        <!-- pageNumで問題を分割しquestionとしてQuestion.vueに渡す -->
-        <Question :question="questions[pageNum]" v-if="start"></Question>
+      </div>
+    </div>
+    <div class="row" v-if="!start">
+      <div class="text-center col">
+        <button class="startBtn" @click="start = true">診断スタート</button>
+      </div>
+    </div>
+    <div v-else>
+      <div class="row answerBtn justify-content-center">
+        <button class="col-sm-3 btnA" @click="next(0)" type="button">A</button>
+        <button class="col-sm-3 btnB" @click="next(1)" type="button">B</button>
+        <button class="col-sm-3 btnC" @click="next(2)" type="button">C</button>
+      </div>
+      <div class="text-center mt-5">
+        <button class="backBtn" @click="back">
+          <span>前の質問に戻る</span>
+        </button>
       </div>
     </div>
   </div>
-  <div class="row" v-if="!start">
-    <div class="text-center col">
-     <button class="startBtn" @click="start = true">診断スタート</button>
-    </div>
-  </div>
-  <div class="row" v-else>
-    <button class="col-sm-4 btnA" @click="next(0)" type="button">A</button>
-    <button class="col-sm-4 btnB" @click="next(1)" type="button">B</button>
-    <button class="col-sm-4 btnC" @click="next(2)" type="button">C</button>
-    <button @click="back">back</button><!--戻るボタン(ノリで作成)-->
-  </div>
-</div>
 </template>
 
 <script>
-import { questionsData } from '@/assets/js/data.js'
-const Question = () => import('../components/questions/Question.vue');
+import { questionsData } from "@/assets/js/data.js";
+const Question = () => import("../components/questions/Question.vue");
 export default {
   components: {
-    Question
+    Question,
   },
   data() {
     return {
       start: false,
       pageNum: 0,
-      answers: '',
-    }
+      answers: "",
+    };
   },
   computed: {
     //data.jsからimportした問題のデータをquestionコンポーネントに流し込む
     questions() {
       return questionsData;
-    }
+    },
   },
   methods: {
     next(answer) {
       //回答するたびに文字列が足されていく "0"->"02"
-      this.answers +=  String(answer);
+      this.answers += String(answer);
       // lastpageかどうか判定
-      const lastPage = this.pageNum == this.questions.length-1;
+      const lastPage = this.pageNum == this.questions.length - 1;
       // lastPageならresult()、そうでないならpageNumに+1
-      lastPage ? this.result() : this.pageNum += 1;
+      lastPage ? this.result() : (this.pageNum += 1);
     },
     back() {
       //前回の回答をなしにする(最後の文字列削除)
@@ -74,53 +86,86 @@ export default {
     },
     result() {
       //回答のkeyを結果ページに送る 例->"02"
-      this.$router.push({ name: 'result-final', params: { answerKey: this.answers } })
-    }
-  }
-}
+      this.$router.push({
+        name: "result-final",
+        params: { answerKey: this.answers },
+      });
+    },
+  },
+};
 </script>
 
 <style scoped>
 .intro {
-    background: #eaf3ff;
-    padding: 10px;
-    border-radius: 40px;
+  background: #eaf3ff;
+  padding: 10px;
+  border-radius: 40px;
 }
 .startBtn {
-    background: #8fc3ff;
-    border-radius: 80px;
-    box-shadow: 0px 2px 5px #8fc3ff;
-    font-weight: 700;
-    height: 49px;
-    width: 240px;
-    max-width: 100%;
+  background: #8fc3ff;
+  border-radius: 80px;
+  box-shadow: 0px 2px 5px #8fc3ff;
+  font-weight: 700;
+  height: 49px;
+  width: 240px;
+  max-width: 100%;
+}
+.answerBtn button {
+  margin: 10px;
 }
 .btnA {
-    background: #8fc3ff;
-    border-radius: 80px;
-    box-shadow: 0px 2px 5px #8fc3ff;
-    font-weight: 700;
-    height: 49px;
-    width: 240px;
-    max-width: 100%;
+  background: #ffdede;
+  border-radius: 80px;
+  box-shadow: 0px 2px 5px #ffdede;
+  font-weight: 700;
+  height: 49px;
+  width: 240px;
+  max-width: 100%;
 }
 .btnB {
-    background: #8fc3ff;
-    border-radius: 80px;
-    box-shadow: 0px 2px 5px #8fc3ff;
-    font-weight: 700;
-    height: 49px;
-    width: 240px;
-    max-width: 100%;
+  background: #f7f3ce;
+  border-radius: 80px;
+  box-shadow: 0px 2px 5px #f7f3ce;
+  font-weight: 700;
+  height: 49px;
+  width: 240px;
+  max-width: 100%;
 }
 .btnC {
-    background: #8fc3ff;
-    border-radius: 80px;
-    box-shadow: 0px 2px 5px #8fc3ff;
-    font-weight: 700;
-    height: 49px;
-    width: 240px;
-    max-width: 100%;
+  background: #c5ecbe;
+  border-radius: 80px;
+  box-shadow: 0px 2px 5px #c5ecbe;
+  font-weight: 700;
+  height: 49px;
+  width: 240px;
+  max-width: 100%;
+}
+.backBtn {
+  display: inline-block;
+  width: 200px;
+  line-height: 58px;
+  color: #4f2513;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px #ccc;
+  position: relative;
+}
+.backBtn ::before {
+  content: "";
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background-image: url("~@/assets/images/back_img.png");
+  background-size: cover;
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  margin-top: -10px;
+}
+.backBtn span {
+  margin-left: 20px;
 }
 </style>
 

@@ -2,6 +2,7 @@ export const questionsData = [
     {
         id: 0,
         title: "質問１",
+        img: "beedrill.png",
         answers: [
             {
                 id: 1,
@@ -20,6 +21,7 @@ export const questionsData = [
     {
         id: 1,
         title: "質問２",
+        img: "wynaut.png",
         answers: [
             {
                 id: 1,
