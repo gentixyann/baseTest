@@ -4,7 +4,7 @@
     <div class="text-center col">
       <div class="page-container">
         <img
-          src="/img/start.JPG"
+          src="@/assets/images/start.JPG"
           class="mb-4 contentImg"
           v-if="!start"
         >
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { questionsData } from '~/assets/js/data.js'
+import { questionsData } from '@/assets/js/data.js'
 const Question = () => import('../components/questions/Question.vue');
 export default {
   components: {

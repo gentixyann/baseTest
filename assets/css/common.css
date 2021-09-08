@@ -42,7 +42,7 @@ li {
 }
 
 .nuxt-link-active {
-    color: #d27ab3 !important;
+    color: #d27ab3;
 }
 
 .primary {
