@@ -1,30 +1,28 @@
 <template>
   <div class="container">
-    <div class="row mb-4">
-      <div class="text-center col">
-        <div class="page-container">
-          <img
-            src="@/assets/images/start.JPG"
-            class="mb-4 contentImg"
-            v-if="!start"
-          />
-          <div class="intro" v-if="!start">
-            <h4>回答に当たっての注意点</h4>
-            <ul>
-              <li>
-                すべての内容に合意できなくても、ほかの2つの文章よりも自分に当てはまるものを直感的に選択して下さい。
-              </li>
-              <li>
-                こうありたい自分ではなく、これまでの人生の大半において実際にそうだったという傾向をお答え下さい。
-              </li>
-              <li>
-                疲れている時など、通常の状態でない時に回答するのは、お勧めしません。
-              </li>
-            </ul>
-          </div>
-          <!-- pageNumで問題を分割しquestionとしてQuestion.vueに渡す -->
-          <Question :question="questions[pageNum]" v-if="start"></Question>
-        </div>
+    <div class="page-container mb-4 text-center">
+      <img
+        src="@/assets/images/start.JPG"
+        class="mb-4 contentImg"
+        v-if="!start"
+      />
+      <div class="intro" v-if="!start">
+        <h4>回答に当たっての注意点</h4>
+        <ul>
+          <li>
+            すべての内容に合意できなくても、ほかの2つの文章よりも自分に当てはまるものを直感的に選択して下さい。
+          </li>
+          <li>
+            こうありたい自分ではなく、これまでの人生の大半において実際にそうだったという傾向をお答え下さい。
+          </li>
+          <li>
+            疲れている時など、通常の状態でない時に回答するのは、お勧めしません。
+          </li>
+        </ul>
+      </div>
+      <!-- pageNumで問題を分割しquestionとしてQuestion.vueに渡す -->
+      <div v-else>
+        <Question :question="questions[pageNum]"></Question>
       </div>
     </div>
     <div class="row" v-if="!start">
@@ -46,6 +44,9 @@
     </div>
   </div>
 </template>
+
+
+
 
 <script>
 import { questionsData } from "@/assets/js/data.js";

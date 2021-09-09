@@ -5,7 +5,6 @@
     <img
       :src="require(`@/assets/images/questions/${question.img}`)"
       class="mb-4 contentImg"
-      v-if="!start"
     />
     <div>
       <!--選択肢answersをfor文で回す-->
