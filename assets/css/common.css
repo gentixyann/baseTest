@@ -22,13 +22,13 @@ html,
 footer {
     width: 100%;
     margin: auto;
-    background-color: #fce4ec;
+    background-color: #fff3f7;
     bottom: 0;
     position: absolute;
 }
 
 .contentImg {
-    width: 70%;
+    width: 50%;
 }
 
 ul {
@@ -42,7 +42,7 @@ li {
 }
 
 .nuxt-link-active {
-    color: #d27ab3 !important;
+    color: #d27ab3;
 }
 
 .primary {
