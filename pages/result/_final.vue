@@ -15,9 +15,9 @@
 
     <div class="row">
       <div class="text-center col">
-        <button class="backToTop">
-          <nuxt-link to="/">Topへ戻る</nuxt-link>
-        </button>
+        <nuxt-link to="/">
+          <button class="backToTop">Topへ戻る</button>
+        </nuxt-link>
       </div>
     </div>
   </div>
@@ -93,10 +93,7 @@ export default Vue.extend({
   border-radius: 80px;
   border: 1px solid #cccccc;
   background-color: #ffffff;
-}
-.backToTop a {
   color: #666;
-  font-size: 16px;
 }
 </style>
 
