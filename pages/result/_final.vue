@@ -55,7 +55,7 @@ export default Vue.extend({
           this.answerKey = this.$route.params.answerKey;
           //sessionstorageにも格納(リロードされた場合this.$route.params.answerKeyが消失しエラーになるため)
           // 本番では本番のURLにする
-          sessionStorage.setItem("localhost:3000", this.answerKey);
+          sessionStorage.setItem("basetest-22450.web.app", this.answerKey);
         } else {
           // result画面でリロードした時sessionStorageを読み込む
           this.answerKey = sessionStorage.getItem("localhost:3000");
