@@ -1,6 +1,8 @@
 <template>
   <div class="wrapper">
-      <Nuxt />
+      <transition name="fade">
+        <Nuxt v-if="ready"/>
+      </transition>
     <footer class="mt-4">
       <div class="text-center p-2">
        &copy; {{ new Date().getFullYear() }}
@@ -11,7 +13,13 @@
 
 <script>
 export default {
-
+  data() {
+    return {
+      ready: false,
+    }
+  },
+  mounted() {
+    this.ready = true
+  }
 }
 </script>
-
