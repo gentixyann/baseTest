@@ -91,13 +91,13 @@ export default {
     next(answer) {
       this.show = false;
       setTimeout(() => {
-        this.show = true
         //回答するたびに文字列が足されていく "0"->"02"
         this.answers += String(answer);
         // lastpageかどうか判定
         const lastPage = this.pageNum == this.questions.length - 1;
         // lastPageならresult()、そうでないならpageNumに+1
         lastPage ? this.result() : (this.pageNum += 1);
+        this.show = true
       }, 2000);
     },
     back() {
