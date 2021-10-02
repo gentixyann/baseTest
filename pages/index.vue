@@ -87,23 +87,18 @@ export default {
       return questionsData;
     },
   },
-  watch: {
-    pageNum: {
-      handler() {
-        this.show = false;
-        setTimeout(() => (this.show = true), 5);
-      },
-      immediate: true,
-    },
-  },
   methods: {
     next(answer) {
-      //回答するたびに文字列が足されていく "0"->"02"
-      this.answers += String(answer);
-      // lastpageかどうか判定
-      const lastPage = this.pageNum == this.questions.length - 1;
-      // lastPageならresult()、そうでないならpageNumに+1
-      lastPage ? this.result() : (this.pageNum += 1);
+      this.show = false;
+      setTimeout(() => {
+        this.show = true
+        //回答するたびに文字列が足されていく "0"->"02"
+        this.answers += String(answer);
+        // lastpageかどうか判定
+        const lastPage = this.pageNum == this.questions.length - 1;
+        // lastPageならresult()、そうでないならpageNumに+1
+        lastPage ? this.result() : (this.pageNum += 1);
+      }, 2000);
     },
     back() {
       //前回の回答をなしにする(最後の文字列削除)

@@ -8,11 +8,13 @@
     />
     <div class="answerText">
       <!--選択肢answersをfor文で回す-->
-      <p v-for="(answer, i) in question.answers" :key="i" class="mb-2">
-        <!--回答の選択肢を表示-->
-        <span class="mr-2">{{ initial[i] }}</span>
-        {{ answer.text }}
-      </p>
+      <div class="text-left" style="display: inline-block">
+        <p v-for="(answer, i) in question.answers" :key="i" class="mb-2" style="inline-block">
+          <!--回答の選択肢を表示-->
+          <span class="mr-2">{{ initial[i] }}</span>
+          {{ answer.text }}
+        </p>
+      </div>
     </div>
   </div>
 </template>
