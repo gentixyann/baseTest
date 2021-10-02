@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <div class="page-container mb-4 text-center">
+    <div class="page-container mb-4">
       <transition name="fade" mode="out-in">
-        <div key="1" v-if="!start">
+        <div key="1" v-if="!start" class="text-center">
           <img
             src="@/assets/images/start.JPG"
             class="mb-4 contentImg"
@@ -97,8 +97,8 @@ export default {
         const lastPage = this.pageNum == this.questions.length - 1;
         // lastPageならresult()、そうでないならpageNumに+1
         lastPage ? this.result() : (this.pageNum += 1);
-        this.show = true
-      }, 2000);
+        this.show = true;
+      }, 1000);
     },
     back() {
       //前回の回答をなしにする(最後の文字列削除)
