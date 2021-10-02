@@ -6,11 +6,12 @@
       :src="require(`@/assets/images/questions/${question.img}`)"
       class="mb-4 contentImg"
     />
-    <div>
+    <div class="answerText">
       <!--選択肢answersをfor文で回す-->
-      <p v-for="(answer, i) in question.answers" :key="i">
+      <p v-for="(answer, i) in question.answers" :key="i" class="mb-2">
         <!--回答の選択肢を表示-->
-        {{ initial[i] }}. {{ answer.text }}
+        <span class="mr-2">{{ initial[i] }}</span>
+        {{ answer.text }}
       </p>
     </div>
   </div>
@@ -32,3 +33,27 @@ export default Vue.extend({
   },
 });
 </script>
+
+<style scoped>
+.answerText span {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 35px;
+  border: 1px solid;
+}
+.answerText p:nth-child(1) span {
+  background: #ffdede;
+  box-shadow: 0px 2px 5px #ffdede;
+}
+.answerText p:nth-child(2) span {
+  background: #f7f3ce;
+  box-shadow: 0px 2px 5px #f7f3ce;
+}
+.answerText p:nth-child(3) span {
+  background: #c5ecbe;
+  box-shadow: 0px 2px 5px #c5ecbe;
+}
+</style>
