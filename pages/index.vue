@@ -1,60 +1,66 @@
 <template>
-  <transition name="fade">
-    <div class="container">
-      <div class="page-container mb-4 text-center">
-        <img
-          src="@/assets/images/start.JPG"
-          class="mb-4 contentImg"
-          v-if="!start"
-        />
-        <div class="intro" v-if="!start">
-          <h4>回答に当たっての注意点</h4>
-          <ul>
-            <li>
-              すべての内容に合意できなくても、ほかの2つの文章よりも自分に当てはまるものを直感的に選択して下さい。
-            </li>
-            <li>
-              こうありたい自分ではなく、これまでの人生の大半において実際にそうだったという傾向をお答え下さい。
-            </li>
-            <li>
-              疲れている時など、通常の状態でない時に回答するのは、お勧めしません。
-            </li>
-          </ul>
+  <div class="container">
+    <div class="page-container mb-4">
+      <transition name="fade" mode="out-in">
+        <div key="1" v-if="!start" class="text-center">
+          <img
+            src="@/assets/images/start.JPG"
+            class="mb-4 contentImg"
+            v-if="!start"
+          />
+          <div class="intro mb-4">
+            <h4>回答に当たっての注意点</h4>
+            <ul>
+              <li>
+                すべての内容に合意できなくても、ほかの2つの文章よりも自分に当てはまるものを直感的に選択して下さい。
+              </li>
+              <li>
+                こうありたい自分ではなく、これまでの人生の大半において実際にそうだったという傾向をお答え下さい。
+              </li>
+              <li>
+                疲れている時など、通常の状態でない時に回答するのは、お勧めしません。
+              </li>
+            </ul>
+          </div>
+          <div class="row">
+            <div class="text-center col">
+              <button class="startBtn" @click="start = true">
+                診断スタート
+              </button>
+            </div>
+          </div>
         </div>
         <!-- pageNumで問題を分割しquestionとしてQuestion.vueに渡す -->
-        <div v-else>
-          <transition name="fade">
-            <Question :question="questions[pageNum]"></Question>
+        <div key="2" v-else>
+          <transition name="fade" mode="out-in">
+            <div v-if="show">
+              <div>
+                <Question :question="questions[pageNum]"></Question>
+              </div>
+              <div>
+                <div class="row answerBtn justify-content-center">
+                  <button class="col-sm-3 btnA" @click="next(0)" type="button">
+                    A
+                  </button>
+                  <button class="col-sm-3 btnB" @click="next(1)" type="button">
+                    B
+                  </button>
+                  <button class="col-sm-3 btnC" @click="next(2)" type="button">
+                    C
+                  </button>
+                </div>
+                <div class="text-center mt-5">
+                  <button class="backBtn" @click="back">
+                    <span>前の質問に戻る</span>
+                  </button>
+                </div>
+              </div>
+            </div>
           </transition>
         </div>
-      </div>
-      <div class="row" v-if="!start">
-        <div class="text-center col">
-          <button class="startBtn" @click="start = true">診断スタート</button>
-        </div>
-      </div>
-      <div v-else>
-        <transition name="fade">
-          <div class="row answerBtn justify-content-center">
-            <button class="col-sm-3 btnA" @click="next(0)" type="button">
-              A
-            </button>
-            <button class="col-sm-3 btnB" @click="next(1)" type="button">
-              B
-            </button>
-            <button class="col-sm-3 btnC" @click="next(2)" type="button">
-              C
-            </button>
-          </div>
-          <div class="text-center mt-5">
-            <button class="backBtn" @click="back">
-              <span>前の質問に戻る</span>
-            </button>
-          </div>
-        </transition>
-      </div>
+      </transition>
     </div>
-  </transition>
+  </div>
 </template>
 
 
@@ -72,6 +78,7 @@ export default {
       start: false,
       pageNum: 0,
       answers: "",
+      show: true,
     };
   },
   computed: {
@@ -82,12 +89,16 @@ export default {
   },
   methods: {
     next(answer) {
-      //回答するたびに文字列が足されていく "0"->"02"
-      this.answers += String(answer);
-      // lastpageかどうか判定
-      const lastPage = this.pageNum == this.questions.length - 1;
-      // lastPageならresult()、そうでないならpageNumに+1
-      lastPage ? this.result() : (this.pageNum += 1);
+      this.show = false;
+      setTimeout(() => {
+        //回答するたびに文字列が足されていく "0"->"02"
+        this.answers += String(answer);
+        // lastpageかどうか判定
+        const lastPage = this.pageNum == this.questions.length - 1;
+        // lastPageならresult()、そうでないならpageNumに+1
+        lastPage ? this.result() : (this.pageNum += 1);
+        this.show = true;
+      }, 1000);
     },
     back() {
       //前回の回答をなしにする(最後の文字列削除)
