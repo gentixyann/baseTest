@@ -1,7 +1,7 @@
 <template>
   <div :class="{ loader: true, fadeout: !isLoading }">
-    <div class="text-center">
-      <img src="@/assets/images/type/main_type1.png" class="contentImg" />
+    <div class="page-container">
+      <img class="splash" src="@/assets/images/Logo.png" />
     </div>
   </div>
 </template>
@@ -19,19 +19,22 @@ export default Vue.extend({
   background-color: #ffffff;
   bottom: 0;
   color: white;
-  display: block;
-  font-size: 32px;
+  display: flex;
+  align-items: center;
+  text-align: center;
   left: 0;
   overflow: hidden;
-  padding-top: 10vh;
   position: fixed;
   right: 0;
-  text-align: center;
   top: 0;
 }
 
+.splash {
+  width: 150px;
+}
+
 .fadeout {
-  animation: fadeout 2s forwards;
+  animation: fadeout 3s forwards;
 }
 
 @keyframes fadeout {

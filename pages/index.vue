@@ -22,13 +22,7 @@
               </li>
             </ul>
           </div>
-          <div class="row">
-            <div class="text-center col">
-              <button class="startBtn" @click="start = true">
-                診断スタート
-              </button>
-            </div>
-          </div>
+          <button class="startBtn" @click="start = true">診断スタート</button>
         </div>
         <!-- pageNumで問題を分割しquestionとしてQuestion.vueに渡す -->
         <div key="2" v-else>
