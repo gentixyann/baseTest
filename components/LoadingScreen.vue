@@ -34,7 +34,7 @@ export default Vue.extend({
 }
 
 .fadeout {
-  animation: fadeout 3s forwards;
+  animation: fadeout 2s forwards;
 }
 
 @keyframes fadeout {

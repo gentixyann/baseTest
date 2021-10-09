@@ -4,7 +4,8 @@
       <h4 class="resultHeadline">
         <span>ズバリあなたは</span>
       </h4>
-      <h2 class="mt-5">{{ result.text }}</h2>
+      <h4 class="mt-5">{{ result.type }}</h4>
+      <h2>{{ result.text }}</h2>
       <div class="mt-3">
         <img
           :src="require(`@/assets/images/type/${result.img}`)"

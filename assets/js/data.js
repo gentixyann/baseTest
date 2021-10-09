@@ -42,47 +42,56 @@ export const questionsData = [
 export const resultsData = [
     {
         id: "00",
-        text: "タイプ7：熱中する人",
+        type: "タイプ7",
+        text: "熱中する人",
         img: "charmander.png"
     },
     {
         id: "01",
-        text: "タイプ3：達成する人",
+        type: "タイプ3",
+        text: "達成する人",
         img: "caterpie.png"
     },
     {
         id: "02",
-        text: "タイプ8：挑戦する人",
+        type: "タイプ8",
+        text: "挑戦する人",
         img: "charmeleon.png"
     },
     {
         id: "10",
-        text: "タイプ2：助ける人",
+        type: "タイプ2",
+        text: "助ける人",
         img: "dragonite.png"
     },
     {
         id: "11",
-        text: "タイプ1：改革する人",
+        type: "タイプ1",
+        text: "改革する人",
         img: "bulbasaur.png"
     },
     {
         id: "12",
-        text: "タイプ6：信じられるものを求める人",
+        type: "タイプ6",
+        text: "信じられるものを求める人",
         img: "ivysaur.png"
     },
     {
         id: "20",
-        text: "タイプ9：平和を好む人",
+        type: "タイプ9",
+        text: "平和を好む人",
         img: "charizard.png"
     },
-     {
+    {
         id: "21",
-        text: "タイプ5：観察する人",
+        type: "タイプ5",
+        text: "観察する人",
         img: "venusaur.png"
     },
-     {
+    {
         id: "22",
-        text: "タイプ4：個性を求める人",
+        type: "タイプ4",
+        text: "個性を求める人",
         img: "blastoise2.png"
     }
 ]
