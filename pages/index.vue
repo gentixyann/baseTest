@@ -85,7 +85,7 @@ export default {
     next(answer) {
       this.show = false;
       setTimeout(() => {
-        //回答するたびに文字列が足されていく "0"->"02"
+        //回答するたびに文字列が足されていく "2"->"21"
         this.answers += String(answer);
         // lastpageかどうか判定
         const lastPage = this.pageNum == this.questions.length - 1;
