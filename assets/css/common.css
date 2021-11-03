@@ -41,6 +41,10 @@ li {
     margin-bottom: 20px;
 }
 
+button {
+    border: 1.5px solid #333;
+}
+
 .nuxt-link-active {
     color: #d27ab3;
 }
