@@ -1,5 +1,17 @@
 {
   "projects": {
     "default": "basetest-22450"
+  },
+  "targets": {
+    "basetest-22450": {
+      "hosting": {
+        "basetest-22450": [
+          "basetest-22450"
+        ],
+        "nurses-characteristic": [
+          "nurses-characteristic"
+        ]
+      }
+    }
   }
 }
